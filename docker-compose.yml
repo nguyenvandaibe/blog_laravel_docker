@@ -84,3 +84,19 @@ services:
     entrypoint: ['/var/www/html/artisan']
     networks:
       - laravel_blog
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    # links:
+    #   - mysql:db
+    depends_on:
+      - mysql
+    ports:
+      - "8082:80"
+    environment:
+      PMA_HOST: mysql
+      # - PMA_USER=root
+      # - PMA_PASSWORD=password
+      # - PHP_UPLOAD_MAX_FILESIZE=100MB
+    networks:
+      - laravel_blog
